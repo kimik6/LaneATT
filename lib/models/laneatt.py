@@ -6,7 +6,12 @@ import numpy as np
 import torch.nn as nn
 from torchvision.models import resnet18, resnet34
 
-from nms import nms
+from . import details
+
+
+def nms(boxes, scores, overlap, top_k):
+    return details.nms_forward(boxes, scores, overlap, top_k)
+    
 from lib.lane import Lane
 from lib.focal_loss import FocalLoss
 
