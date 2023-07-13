@@ -7,6 +7,7 @@ from lib.config import Config
 from lib.runner import Runner
 from lib.experiment import Experiment
 
+from . import details
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train lane detector")
@@ -36,6 +37,10 @@ def parse_args():
     return args
 
 
+
+def nms(boxes, scores, overlap, top_k):
+    return details.nms_forward(boxes, scores, overlap, top_k)
+    
 def main():
     args = parse_args()
     exp = Experiment(args.exp_name, args, mode=args.mode)
